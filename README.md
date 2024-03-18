@@ -3,7 +3,7 @@
 tema escolhido:
 Pojeto 3, Sistema Bancário.
 
-//Main, inserev os valores para a classe "ContaBancaria e atualiza o saldo com o rendimento" e exibe o saldo atual
+//Main, inserev os valores para a classe "ContaBancaria e atualiza o saldo com o rendimento" e exibe o saldo atual//
 
 public class Main {
     public static void main(String[] args) {
@@ -31,7 +31,7 @@ public class Main {
     }
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//Classe conta bancaria, cria a "struct" com as variaveis nome do cliente, saldo atual e o tipo de conta(corrente ou poupança)
+//Classe conta bancaria, cria a "struct" com as variaveis nome do cliente, saldo atual e o tipo de conta(corrente ou poupança)//
 
 public class ContaBancaria {
     String nome;
@@ -68,7 +68,7 @@ public class ContaBancaria {
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//Classe que utiliza um array para armazenar as contas diferentes
+//Classe que utiliza um array para armazenar as contas diferentes//
 class GerenciadorContas {
     private ContaBancaria[] contas;
     private int tamanhoAtual;
