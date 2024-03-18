@@ -30,8 +30,8 @@ Pojeto 3, Sistema Bancário.
             }
         }
     }
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//Classe conta bancaria, cria a "struct" com as variaveis nome do cliente, saldo atual e o tipo de conta(corrente ou poupança)//
+//------------------------------------------------------------------------------------------------------------------------------
+//Classe conta bancaria, cria a "struct" com as variaveis nome do cliente, saldo atual e o tipo de conta(corrente ou poupança)
 
     public class ContaBancaria {
         String nome;
@@ -66,9 +66,8 @@ Pojeto 3, Sistema Bancário.
             System.out.println("Tipo de Conta: " + tipoConta);
         }
     }
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-//Classe que utiliza um array para armazenar as contas diferentes//
+//--------------------------------------------------------------------------------------------------------------------------------------
+//Classe que utiliza um array para armazenar as contas diferentes
 
     class GerenciadorContas {
         private ContaBancaria[] contas;
