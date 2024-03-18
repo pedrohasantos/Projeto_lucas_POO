@@ -31,6 +31,7 @@ Pojeto 3, Sistema Bancário.
         }
     }
 //------------------------------------------------------------------------------------------------------------------------------
+
 //Classe conta bancaria, cria a "struct" com as variaveis nome do cliente, saldo atual e o tipo de conta(corrente ou poupança)
 
     public class ContaBancaria {
@@ -67,6 +68,7 @@ Pojeto 3, Sistema Bancário.
         }
     }
 //--------------------------------------------------------------------------------------------------------------------------------------
+
 //Classe que utiliza um array para armazenar as contas diferentes
 
     class GerenciadorContas {
