@@ -1,7 +1,7 @@
 # Projeto_lucas_POO
 Pedro Henrique Afonso dos Santos RA:00000849096
-tema escolhido:
-Pojeto 3, Sistema Bancário.
+
+tema escolhido: Pojeto 3, Sistema Bancário.
 
 Requisitos Mínimos:
 
