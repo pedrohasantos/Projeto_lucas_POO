@@ -1,98 +1,84 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        GerenciadorContas gerenciador = new GerenciadorContas(3);
+        Scanner scanner = new Scanner(System.in);
+        GerenciadorContas gerenciador = new GerenciadorContas(10);
 
-        ContaBancaria conta1 = new ContaBancaria("pedro", 297.30, "corrente");
-        ContaBancaria conta2 = new ContaBancaria("julia", 256.20, "corrente");
-        ContaBancaria conta3 = new ContaBancaria("pablo", 400.20, "poupança");
-
-        gerenciador.adicionarConta(0, conta1);
-        gerenciador.adicionarConta(1, conta2);
-        gerenciador.adicionarConta(2, conta3);
-
-        System.out.println("Contas do tipo poupança terão um rendimento de 6,75%");
-
-        for (int i = 0; i < gerenciador.tamanho(); i++) {
-            ContaBancaria conta = gerenciador.obterConta(i);
-            if (conta.tipoConta.equals("poupança")) {
-                double saldoAntes = conta.saldo;
-                conta.depositarValor(saldoAntes * 0.0675); 
-                System.out.println("Rendimento adicionado à conta de " + conta.nome);
-                System.out.println("Saldo antes: " + saldoAntes + " Saldo depois: " + conta.saldo);
+        int opcao;
+        do {
+            System.out.println("\n--- Menu ---");
+            System.out.println("1. Adicionar Conta");
+            System.out.println("2. Depositar Valor");
+            System.out.println("3. Sacar Valor");
+            System.out.println("4. Transferir Valor");
+            System.out.println("5. Sair");
+            System.out.print("Escolha uma opção: ");
+            opcao = scanner.nextInt();
+    // Exibe o menu com as opções de entrada para o usuario
+            switch (opcao) {
+                case 1:
+                    adicionarConta(gerenciador, scanner);
+                    break;
+                case 2:
+                    depositarValor(gerenciador, scanner);
+                    break;
+                case 3:
+                    sacarValor(gerenciador, scanner);
+                    break;
+                case 4:
+                    transferirValor(gerenciador, scanner);
+                    break;
+                case 5:
+                    System.out.println("Saindo do programa...");
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
             }
-        }
+        } while (opcao != 5);
+
+        scanner.close();
     }
-//------------------------------------------------------------------------------------
-    public static class ContaBancaria {
-        String nome;
-        double saldo;
-        String tipoConta;
-
-        public ContaBancaria(String nome, double saldo, String tipoConta) {
-            this.nome = nome;
-            this.saldo = saldo;
-            this.tipoConta = tipoConta;
-        }
-
-        public void depositarValor(double valor) {
-            saldo += valor;
-            if (tipoConta.equals("poupança")){
-                saldo *= 1.0675;
-            }
-        }
-
-        public void sacarValor(double valor) {
-            if (saldo - valor < 0) { //Valida se a operação resulta em uma conta negativa
-                System.out.println("Saldo insuficiente");
-            } else {
-                saldo -= valor;
-            }
-        }
-
-        public void printar() {
-            System.out.println("Nome: " + nome);
-            System.out.println("Saldo: " + saldo);
-            System.out.println("Tipo de Conta: " + tipoConta);
-        }
-
-        public void pix(int origem, int destino, double valor, GerenciadorContas gerenciador) {
-            ContaBancaria contaOrigem = gerenciador.obterConta(origem);
-            ContaBancaria contaDestino = gerenciador.obterConta(destino);
-
-            if (contaOrigem == null || contaDestino == null) {
-                System.out.println("Conta de origem ou destino inválida.");
-                return;
-            }
-            if (contaOrigem.saldo < valor) {
-                System.out.println("Saldo insuficiente na conta de origem.");
-                return;
-            }
-            contaOrigem.sacarValor(valor);
-            contaDestino.depositarValor(valor);
-            System.out.println("Transferência de " + valor + " realizada com sucesso de " + contaOrigem.nome + " para " + contaDestino.nome);
-        }
+    // Função para adicionar uma nova conta bancária ao gerenciador de contas
+    public static void adicionarConta(GerenciadorContas gerenciador, Scanner scanner) {
+        System.out.println("\n--- Adicionar Conta ---");
+        System.out.println("Informe o nome: ");
+        String nome = scanner.next();
+        System.out.println("Informe o saldo: ");
+        double saldo = scanner.nextDouble();
+        System.out.println("Informe o tipo da conta: ");
+        String tipoConta = scanner.next();
+        ContaBancaria conta = new ContaBancaria(nome, saldo, tipoConta);
+        gerenciador.adicionarConta(conta);
+        System.out.println("Conta adicionada com sucesso!");
     }
-//----------------------------------------------------------------
-    static class GerenciadorContas {
-        private ContaBancaria[] contas;
-        private int tamanhoAtual;
-
-        public GerenciadorContas(int tamanho) {
-            contas = new ContaBancaria[tamanho];
-            tamanhoAtual = 0;
-        }
-
-        public void adicionarConta(int indice, ContaBancaria conta) {
-            contas[indice] = conta;
-            tamanhoAtual++;
-        }
-
-        public ContaBancaria obterConta(int indice) {
-            return contas[indice];
-        }
-
-        public int tamanho() {
-            return tamanhoAtual;
-        }
+    // Função para depositar um valor em uma conta bancária específica
+    public static void depositarValor(GerenciadorContas gerenciador, Scanner scanner) {
+        System.out.println("\n--- Depositar Valor ---");
+        System.out.println("Informe o índice da conta: ");
+        int indice = scanner.nextInt();
+        System.out.println("Informe o valor a ser depositado:");
+        double valor = scanner.nextDouble();
+        gerenciador.depositarValor(indice, valor);
+    }
+    // Função para sacar um valor de uma conta bancária específica
+    public static void sacarValor(GerenciadorContas gerenciador, Scanner scanner) {
+        System.out.println("\n--- Sacar Valor ---");
+        System.out.println("Informe o índice da conta:");
+        int indice = scanner.nextInt();
+        System.out.println("Informe o valor a ser sacado:");
+        double valor = scanner.nextDouble();
+        gerenciador.sacarValor(indice, valor);
+    }
+    // Função para transferir um valor entre duas contas bancárias
+    public static void transferirValor(GerenciadorContas gerenciador, Scanner scanner) {
+        System.out.println("\n--- Transferir Valor ---");
+        System.out.println("Informe o índice da conta de origem:");
+        int origem = scanner.nextInt();
+        System.out.println("Informe o índice da conta de destino:");
+        int destino = scanner.nextInt();
+        System.out.println("Informe o valor a ser transferido:");
+        double valor = scanner.nextDouble();
+        gerenciador.transferirValor(origem, destino, valor);
     }
 }
