@@ -11,5 +11,6 @@ Requisitos Mínimos:
    
 Ferramentas adicionais:
 - Sistema de menu com as operações disponiveis para o usuário.
+- scanner para as informações que o usuário inserir
 - Sistema de rendimento da poupança.
 - Sistema de pix entre contas.
