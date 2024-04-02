@@ -10,5 +10,6 @@ Requisitos Mínimos:
 - Validar transações para evitar saldos negativos.
    
 Ferramentas adicionais:
+- Sistema de menu com as operações disponiveis para o usuário.
 - Sistema de rendimento da poupança.
 - Sistema de pix entre contas.
